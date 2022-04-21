@@ -20,6 +20,13 @@ services:
       - node-network
     volumes: 
       - ./node:/usr/src/app
+      - /usr/src/app/node_modules # anonymous volume
+                                  # Na hora que cria o volume a cima, substitui todo conteudo,
+                                  # no /usr/src/app pelo que esta no diretorio node, removendo
+                                  # o diretorio node_modules, o volume anonimo garante que ao
+                                  # criar o volume acima, utilize o conteudo do diretorio
+                                  # node_modules que esta na image gerada com o Dockerfile,
+                                  # onde já foi feito o npm install.
     tty: true
     ports: 
       - "3000:3000"
